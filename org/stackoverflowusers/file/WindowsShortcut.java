@@ -6,8 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileType;
 
 /**
  * Represents a Windows shortcut (typically visible to Java only as a '.lnk' file).
@@ -41,13 +39,13 @@ public class WindowsShortcut
      * @return true if may be a link, false otherwise
      * @throws IOException if an IOException is thrown while reading from the file
      */
-    public static boolean isPotentialValidLink(FileObject file) throws IOException {
+    public static boolean isPotentialValidLink(File file) throws IOException {
         final int minimum_length = 0x64;
-        InputStream fis = file.getContent().getInputStream();
+        InputStream fis = new FileInputStream(file);
         boolean isPotentiallyValid = false;
         try {
-            isPotentiallyValid = file.getType().equals(FileType.FILE)
-                && file.getName().getExtension().toLowerCase().equals("lnk")
+            isPotentiallyValid = file.isFile()
+                && file.getName().toLowerCase().endsWith(".lnk")
                 && fis.available() >= minimum_length
                 && isMagicPresent(getBytes(fis, 32));
         } finally {
@@ -58,15 +56,6 @@ public class WindowsShortcut
 
     public WindowsShortcut(File file) throws IOException, ParseException {
         InputStream in = new FileInputStream(file);
-        try {
-            parseLink(getBytes(in));
-        } finally {
-            in.close();
-        }
-    }
-
-    public WindowsShortcut(FileObject file) throws IOException, ParseException {
-        InputStream in = file.getContent().getInputStream(); 
         try {
             parseLink(getBytes(in));
         } finally {
