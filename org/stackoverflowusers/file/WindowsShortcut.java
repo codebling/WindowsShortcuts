@@ -14,6 +14,7 @@ import java.text.ParseException;
  * Originally called LnkParser
  *
  * Written by: (the stack overflow users, obviously!)
+ *   Apache Commons VFS dependency removed by crysxd (why were we using that!?) https://github.com/crysxd
  *   Headerified, refactored and commented by Code Bling http://stackoverflow.com/users/675721/code-bling
  *   Network file support added by Stefan Cordes http://stackoverflow.com/users/81330/stefan-cordes
  *   Adapted by Sam Brightman http://stackoverflow.com/users/2492/sam-brightman
