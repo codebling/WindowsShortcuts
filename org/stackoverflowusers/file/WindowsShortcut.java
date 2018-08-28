@@ -44,22 +44,18 @@ public class WindowsShortcut
      *
      * @param file the potential link
      * @return true if may be a link, false otherwise
-     * @throws IOException if an IOException is thrown while reading from the file
      */
-    public static boolean isPotentialValidLink(final File file) throws IOException {
-        final int minimum_length = 0x64;
-        final InputStream fis = new FileInputStream(file);
-        boolean isPotentiallyValid = false;
-        try {
-            isPotentiallyValid = file.isFile()
-                && file.getName().toLowerCase().endsWith(".lnk")
-                && fis.available() >= minimum_length
-                && isMagicPresent(getBytes(fis, 32));
-        } finally {
-            fis.close();
-        }
-        return isPotentiallyValid;
-    }
+  	public static boolean isPotentialValidLink(final File file) {
+		final int minimum_length = 0x64;
+		boolean isPotentiallyValid = false;
+		if (file.getName().toLowerCase().endsWith(".lnk"))
+			try (final InputStream fis = new FileInputStream(file)) {
+				isPotentiallyValid = file.isFile() && fis.available() >= minimum_length && isMagicPresent(getBytes(fis, 32));
+			} catch (Exception e) {
+				// forget it
+			}
+		return isPotentiallyValid;
+	}
 
     public WindowsShortcut(final File file) throws IOException, ParseException {
         final InputStream in = new FileInputStream(file);
