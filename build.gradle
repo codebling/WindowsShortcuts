@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+ 
+mainClassName = 'WindowsShortcut'
+ 
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+ 
+repositories {
+    jcenter()
+}
