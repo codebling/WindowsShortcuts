@@ -15,6 +15,10 @@ public class WindowsShortcutMain
             "src/test/fixtures/Local folder.lnk",
             "src/test/fixtures/Remote folder.lnk",
             "src/test/fixtures/Remote folder (mapped to X-drive).lnk",
+            "src/test/fixtures/Hazarsolve Eduction Tubes II.pdf - Shortcut.lnk",
+            "src/test/fixtures/HSBD-10AS Instructions.pdf - Shortcut.lnk",
+            "src/test/fixtures/HSBD-50E Instructions.pdf - Shortcut.lnk",
+            "src/test/fixtures/test.pdf - Shortcut.lnk",
         };
         for (String filename : filenames) 
         {
