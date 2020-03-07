@@ -5,5 +5,5 @@ install: true
 # dist: trusty
 jdk: oraclejdk15
 
-script:
-  - ./gradlew build --scan -s
+#script:
+#  - bundle exec gradle build --scan -s
