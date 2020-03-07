@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
  
-mainClassName = 'WindowsShortcut'
+mainClassName = 'org.stackoverflowusers.file.WindowsShortcutMain'
  
 dependencies {
     testCompile 'junit:junit:4.12'
