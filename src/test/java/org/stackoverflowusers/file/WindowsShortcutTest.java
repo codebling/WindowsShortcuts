@@ -11,7 +11,7 @@ public class WindowsShortcutTest
 {
     @Test
     public void testLocalLink() throws IOException, ParseException {
-        File file = new File("../../../fixtures/Local file.lnk");
+        File file = new File("../../../../fixtures/Local file.lnk");
         WindowsShortcut link = new WindowsShortcut(file);
         assertEquals(true, link.isLocal());
     }
