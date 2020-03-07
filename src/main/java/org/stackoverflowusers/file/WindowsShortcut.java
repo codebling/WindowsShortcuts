@@ -15,6 +15,8 @@ import java.text.ParseException;
  * Originally called LnkParser
  *
  * Written by: (the stack overflow users, obviously!)
+ *   Dword fix for offsets within file location structure  by file extension by JS Lair https://stackoverflow.com/users/10297367/js-lair https://github.com/JSLair
+ *   Filtering potential links by file extension by JS Lair https://stackoverflow.com/users/10297367/js-lair https://github.com/JSLair
  *   "isLocal" bit fix by Naxos84 https://stackoverflow.com/users/3157899/naxos84 https://github.com/Naxos84
  *   Apache Commons VFS dependency removed by crysxd (why were we using that!?) https://github.com/crysxd
  *   Headerified, refactored and commented by Code Bling http://stackoverflow.com/users/675721/code-bling
@@ -204,10 +206,10 @@ public class WindowsShortcut
             final int basename_offset_offset = 0x10;
             final int networkVolumeTable_offset_offset = 0x14;
             final int finalname_offset_offset = 0x18;
-            final int finalname_offset = link[file_start + finalname_offset_offset] + file_start;
+            final int finalname_offset = bytesToDword(link,file_start + finalname_offset_offset) + file_start;
             final String finalname = getNullDelimitedString(link, finalname_offset);
             if (isLocal) {
-                final int basename_offset = link[file_start + basename_offset_offset] + file_start;
+                final int basename_offset = bytesToDword(link,file_start + basename_offset_offset) + file_start;
                 final String basename = getNullDelimitedString(link, basename_offset);
                 real_file = basename + finalname;
             } else {
