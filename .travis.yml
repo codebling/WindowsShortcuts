@@ -3,7 +3,7 @@ install: true
 
 # os: linux
 # dist: trusty
-jdk: oraclejdk15
+jdk: oraclejdk9
 
 #script:
 #  - bundle exec gradle build --scan -s
