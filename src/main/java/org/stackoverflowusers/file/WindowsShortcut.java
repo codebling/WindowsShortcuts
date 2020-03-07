@@ -15,6 +15,7 @@ import java.text.ParseException;
  * Originally called LnkParser
  *
  * Written by: (the stack overflow users, obviously!)
+ *   "isLocal" bit fix by Naxos84 https://stackoverflow.com/users/3157899/naxos84 https://github.com/Naxos84
  *   Apache Commons VFS dependency removed by crysxd (why were we using that!?) https://github.com/crysxd
  *   Headerified, refactored and commented by Code Bling http://stackoverflow.com/users/675721/code-bling
  *   Network file support added by Stefan Cordes http://stackoverflow.com/users/81330/stefan-cordes
@@ -197,7 +198,7 @@ public class WindowsShortcut
 
             final int file_location_info_flag_offset_offset = 0x08;
             final int file_location_info_flag = link[file_start + file_location_info_flag_offset_offset];
-            isLocal = (file_location_info_flag & 2) == 0;
+            isLocal = (file_location_info_flag & 1) == 1;
             // get the local volume and local system values
             //final int localVolumeTable_offset_offset = 0x0C;
             final int basename_offset_offset = 0x10;
